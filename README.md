@@ -115,9 +115,9 @@ class App extends Component {
 
                 {/* Create the routes. This will not appear on the page. */}
 +               <div className="main">
-+                   {/*<Switch>*/}
++                   <Switch>
 +                       <Route path="/about" component={ About } />
-+                   {/*</Switch>*/}
++                   </Switch>
 +               </div>
 +           </header>
         );
