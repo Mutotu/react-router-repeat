@@ -182,4 +182,3 @@ Users should also be able to increase and decrease the amount of shares owned an
 ## Resources
 
 - [React Router Docs](https://github.com/ReactTraining/react-router/tree/master/packages/react-router/docs/api)
-- [React Router Lesson Plan](https://git.generalassemb.ly/ga-wdi-lessons/react-router)
