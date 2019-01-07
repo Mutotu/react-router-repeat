@@ -134,51 +134,13 @@ Done. We've successfully added a link to a route in our app. Try visiting the ro
 
 Try adding a route back to the homepage. Don't worry about content for now!
 
-## Lab I: Stock Trader Basic
 
-Starter code: https://github.com/SF-WDI-LABS/react-router-intro/blob/master/stock_basic.md
+## Lab: Stock Trader App
 
-Create a basic Stock Trader app using React Router. It should have the following:
+For today's lab you will be building a stock tracking app. The lab will be broken down into two parts...
 
-- About, Stock components.
-- Links to each component, including the homepage.
-- Use the stocks.json file included in the data folder to display on the pages.
+1. Build a React app that uses react-router
+2. Communicate with 3rd-party APIs
 
-Further instructions available in the README.
+Clone this [repo](https://git.generalassemb.ly/SF-WDI/react-router-lab) to get the starter code.
 
-
-## Lab II: Stock Trader w/ API
-
-Starter code: https://github.com/SF-WDI-LABS/react-router-intro/blob/master/stock_api.md
-
-Add a third party api to the basic app for data instead.
-
-## Challenges
-
-#### Improve the styling
-
-Bootstrap is already imported into our styles directly. Improve the layout by adding:
-
-- a Header with inline navigation
-
-#### Create a table for the Dashboard
-
-The table should contain all of the stocks and their related data. Add a feature to display the amount of shares purchased for any given stock. Display the total value of the shares in a new column named `Total Value`
-
-For example, a user can own 10 stocks of Google. They should be able to see the stock count and its total value on the Dashboard.
-
-By default, users own 5 shares of each company.
-
-*You do not need to save or store this data in any database or api. Just hard code it for now.*
-
-#### Link to individual stocks.
-
-Add a feature so users can click a stock link visit a page for individual stocks.
-
-Users should also be able to increase and decrease the amount of shares owned and see the value of their total value on the page as well.
-
-*You do not need to save or store this data in any database or api. Just hard code it for now.*
-
-## Resources
-
-- [React Router Docs](https://github.com/ReactTraining/react-router/tree/master/packages/react-router/docs/api)
