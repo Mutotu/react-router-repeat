@@ -9,9 +9,9 @@ For this lesson, students should:
 The first part is a demonstration of how Router works. Students can then work on each lab and the challenges.
 
 ## Learning Objectives
-- Learn about routing with react
-- Using data from APIs and JSON files
-- Create a Stock Trading app
+- Learn about routing with react-router
+<!-- - Using data from APIs and JSON files -->
+<!-- - Create a Stock Trading app -->
 
 ## Preparation
 
