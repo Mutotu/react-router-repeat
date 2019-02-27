@@ -135,12 +135,11 @@ Done. We've successfully added a link to a route in our app. Try visiting the ro
 Try adding a route back to the homepage. Don't worry about content for now!
 
 
-## Lab: Stock Trader App
+<!-- ## Lab: Stock Trader App -->
 
-For today's lab you will be building a stock tracking app. The lab will be broken down into two parts...
+<!-- For today's lab you will be building a stock tracking app. The lab will be broken down into two parts... -->
 
-1. Build a React app that uses react-router
-2. Communicate with 3rd-party APIs
+<!-- 1. Build a React app that uses react-router -->
+<!-- 2. Communicate with 3rd-party APIs -->
 
-Clone this [repo](https://git.generalassemb.ly/SF-WDI/react-router-lab) to get the starter code.
-
+<!-- Clone this [repo](https://git.generalassemb.ly/SF-WDI/react-router-lab) to get the starter code. -->
