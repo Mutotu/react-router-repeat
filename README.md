@@ -137,3 +137,73 @@ export default App;
 Done. We've successfully added a link to a route in our app. Try visiting the route in the browser!
 
 Try adding a route back to the homepage. Don't worry about content for now!
+
+## Redirecting
+
+Now let's learn about redirecting in react. To do so we will be using a few new concepts.
+
+### withRouter
+
+App.js
+
+```diff
+import React, { Component } from 'react';
++ import { withRouter } from 'react-router-dom';
+import './styles/App.css';
+import {
+    Route,
+    Link,
+    Switch
+} from 'react-router-dom'
+
+import About from './About';
+
+class App extends Component {\
++   state = {
++   loggedIn: false
++ }
+
++ componentDidMount(){
++
++}
+
++ redirectHome = () => {
++   this.setState({
++    loggedIn: true
++})
++}
+    render() {
+        return (
+          <header>
+               <h1>Learn Routing</h1>
+               <nav>
+                   <ul>
+                       <li><Link to="/about">About</Link></li>
++                       {/* adding a button to change the state to trigger redirection */}
++                       <li><button>Log In</button></li>
+                   </ul>
+               </nav>
+
+               <div className="main">
+                  <Switch>
+                      <Route path="/about" component={ About } />
+                   </Switch>
+               </div>
+           </header>
+        );
+    }
+}
++ export default withRouter(App)
+```
+
+Now in our redirect function we can add this to force our react app to redirect to the route we choose.
+
+Inside our componentDidMount.
+
+```jsx
+if (loggedIn) {
+	this.props.history.push(`/about`);
+}
+```
+
+And just like that we have redirection.
