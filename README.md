@@ -70,7 +70,7 @@ import {
 
 Now we need some routes. But first, let's create a new component that we can attach to a route:
 
-<summary>About.js</summary>
+### About.js
 
 ```
 import React, { Component } from 'react';
@@ -94,7 +94,7 @@ Before we jump into connecting the two let's look at the syntax for creating a L
 <Link to='/about'>About</Link>
 ```
 
-<summary>App.js</summary>
+### App.js
 
 ```diff
 import React, { Component } from 'react';
