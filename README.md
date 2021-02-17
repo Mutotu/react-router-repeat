@@ -19,7 +19,7 @@ The first part is a demonstration of how Router works. Students can then work on
 
 First, we'll create a new app to learn how React Router works.
 
-1. Create a new react app: `create-react-app learn-react-router`
+1. Create a new react app: `npx create-react-app learn-react-router`
 2. `cd learn-react-router`
 3. `npm install react-router-dom`
 
