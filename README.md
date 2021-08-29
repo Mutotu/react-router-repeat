@@ -9,39 +9,42 @@ For this lesson, students should:
 
 The first part is a demonstration of how Router works. Students can then work on each lab and the challenges.
 
-## Learning Objectives
+## What is React Router?
 
-- Learn about routing with react-router
-  <!-- - Using data from APIs and JSON files -->
-  <!-- - Create a Stock Trading app -->
+React Router is tool that will allow us to update the URL of our React applications without having to fully refresh the page. This makes for a much smoother user experience in the browser.
 
 ## Preparation
 
 First, we'll create a new app to learn how React Router works.
 
-1. Create a new react app: `npx create-react-app learn-react-router`
-2. `cd learn-react-router`
+1. Create a new react app: `npx create-react-app react-router`
+2. `cd react-router`
 3. `npm install react-router-dom`
 
-## What is React Router?
+## What is a Single Page App (SPA)?
 
-React Router is a module that makes it easy to make single page apps (SPAs). SPAs are web apps which load different sections of a website within the same page. The user feels as though they've never left the homepage because links swap out content and replace it with new content.
+SPAs are web apps which load different sections of a website without technically reloading the page. The user feels as if they are navigating to different pages on the website but infact the React application is just hiding and showing different "Page" components.
 
-The main components of the router are:
+However, in a standard web application, when a user navigates to different pages the URL will update to match the page they are currently visiting. However, with React, hiding and showing different page components will not update the URL.
 
-1. `BrowserRouter`: The module that stores all the routes for the app as well as route history, current location and url.
-2. `Switch`: Creates a switch case to replace the component area depending on the route.
-3. `Route`: Used to define each individual route by relating each path to a specific component.
+This is where React Router comes in.
 
-Since `BrowserRouter` is the parent component, we'll configure it in `index.js`. It would look like this:
+## Where Does React Router Come In?
 
-```
+React Router is a module that makes it easy to make single page apps (SPAs) with React and will allow us to update the URL when a user visits a particular "Page" in the app. 
+
+## Code Along
+
+We'll build a bare bones application that will allow us to focus on using React Router. For this app we'll create a few different "Pages". We'll also create a Header at the top of the app that will allow us to switch betweeen pages by clicking on the navigation links.
+
+---
+## Wrap the App in Router
+
+In `index.js`, we'll import the `BrowserRouter` module from `react-router-dom` and rename it to `Router`. As a feature of ES6 imports we can rename our imports to whatever we would like.
+```js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-  BrowserRouter as Router
-} from "react-router-dom"
-
+import { BrowserRouter as Router } from "react-router-dom";
 import App from './App';
 
 ReactDOM.render(
@@ -52,158 +55,208 @@ ReactDOM.render(
 );
 ```
 
-Update `index.js` to include this code.
+Here, we are wrapping our entire React application in our `Router`. This will allow us to use React Router throughout the entirety of our app.
 
-Next, let's add some routes. Open `App.js` and let's add let's import the routing components we'll need first.
+---
+## Create Files
 
+We'll go ahead and create a few "Page" Components.
+
+Start by creating a `pages` directory.
+```bash
+mkdir src/pages
 ```
-import {
-    Route,
-    Link,
-    Switch
-} from 'react-router-dom'
+
+Then we'create the files for the three pages, `HomePage.jsx`, `AboutPage.jsx`, and `ContactPage.jsx`.
+
+```bash
+touch src/pages/HomePage.jsx
+touch src/pages/AboutPage.jsx
+touch src/pages/ContactPage.jsx
 ```
 
-- `Route` is used to connect paths to components.
-- `Link` is used to create links to `Route` paths.
-- `Switch` will find the _first_ route to match a given path. Once found, it will stop looking, just like a Javascript switch statement.
+Create a `components` directory and create a `Header.jsx` inside `components`.
 
-Now we need some routes. But first, let's create a new component that we can attach to a route:
-
-### About.js
-
+```bash
+mkdir src/components
+touch src/components/Header.jsx
 ```
-import React, { Component } from 'react';
+---
+## Create the Components
 
-class About extends Component {
-    render () {
-        return (
-            <div>
-                All about routing! Read it here folks!
-            </div>
-        )
-    }
+Our pages will start off very basic to allow us to focus on React Router.
+
+In `HomePage.jsx` add a basic function component.
+```js
+function HomePage() {
+  return (
+    <main>Home Page Component</main>
+  )
 }
 
-export default About;
+export default HomePage;
 ```
 
-Before we jump into connecting the two let's look at the syntax for creating a Link to a route.
+Create components for the `AboutPage` page and the `ContactPage` page. They can be basic just like the `HomePage` component, but with different content in the return statement.
 
-```jsx
-<Link to='/about'>About</Link>
+---
+
+In `Header.jsx` set up the navigation. The navigation won't include links/anchor tags for now. We'll be adding those in with React Router.
+```js
+function Header() {
+  return (
+    <nav>
+      <h1>React Router</h1>
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+      </ul>
+    </nav>
+  )
+}
 ```
 
-### App.js
+---
 
-```diff
-import React, { Component } from 'react';
-import './styles/App.css';
-import {
-    Route,
-    Link,
-    Switch
-} from 'react-router-dom'
+## Add Components to the App
 
-+ import About from './About';
+In App.js add all of the components and pages we just created.
 
-class App extends Component {
-    render() {
-        return (
-+           <header>
-+               <h1>Learn Routing</h1>
-+               <nav>
-+                   {/* Create our nav bar links using the Link element from react router */}
-+                   <ul>
-+                       <li><Link to="/about">About</Link></li>
-+                   </ul>
-+               </nav>
+```js
+import Header from './components/Header';
+import AboutPage from './pages/AboutPage';
+import HomePage from './pages/HomePage';
+import ContactPage from './pages/ContactPage';
+import './App.css';
 
-                {/* Create the routes. This will not appear on the page. */}
-+               <div className="main">
-+                   <Switch>
-+                       <Route path="/about" component={ About } />
-+                   </Switch>
-+               </div>
-+           </header>
-        );
-    }
+function App() {
+  return (
+    <div>
+      <Header />
+      <HomePage />
+      <AboutPage />
+      <ContactPage />
+    </div>
+  );
 }
 
 export default App;
-
 ```
 
-Done. We've successfully added a link to a route in our app. Try visiting the route in the browser!
+In the browser, you'll notice we're showing all three Page components at once. The goal is to only show one at a time. When the user visits `/` we want to see the `Homepage` component showing. If the user visits `/about` we want to see the `AboutPage` component. If the user visits `/contact` we want to see the `ContactPage` component. We'll add this functionality now!
 
-Try adding a route back to the homepage. Don't worry about content for now!
+## Add Links
 
-## Redirecting
+In `Header.jsx` import the `Link` component from `react-router-dom`. We're using object destructuring to pull out just the `Link` variable from the `react-router-dom` package.
+```js
+import { Link } from 'react-router-dom';
+...
+```
 
-Now let's learn about redirecting in react. To do so we will be using a few new concepts.
-
-### withRouter
-
-App.js
-
-```diff
-import React, { Component } from 'react';
-+ import { withRouter } from 'react-router-dom';
-import './styles/App.css';
-import {
-    Route,
-    Link,
-    Switch
-} from 'react-router-dom'
-
-import About from './About';
-
-class App extends Component {\
-+   state = {
-+   loggedIn: false
-+ }
-
-+ componentDidMount(){
-+
-+}
-
-+ redirectHome = () => {
-+   this.setState({
-+    loggedIn: true
-+})
-+}
-    render() {
-        return (
-          <header>
-               <h1>Learn Routing</h1>
-               <nav>
-                   <ul>
-                       <li><Link to="/about">About</Link></li>
-+                       {/* adding a button to change the state to trigger redirection */}
-+                       <li><button>Log In</button></li>
-                   </ul>
-               </nav>
-
-               <div className="main">
-                  <Switch>
-                      <Route path="/about" component={ About } />
-                   </Switch>
-               </div>
-           </header>
-        );
-    }
+In the `Header` component wrap each navigation component in a `<Link>` component. Set the `to` prop of each `<Link>` component to its corresponding route.
+```js
+...
+function Header() {
+  return (
+    <nav>
+      <h1>React Router</h1>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact</Link>
+        </li>
+      </ul>
+    </nav>
+  )
 }
-+ export default withRouter(App)
+
+export default Header;
 ```
 
-Now in our redirect function we can add this to force our react app to redirect to the route we choose.
+Test it out. Try clicking on the navigation links. We should see the path in the URL update. 
 
-Inside our componentDidMount.
+Open up the elements panel in your browser and you'll notice we've actually created anchor tags. Each one with the `href` property set to either `/`, `/about`, or `/contact`.
+---
 
-```jsx
-if (loggedIn) {
-	this.props.history.push(`/about`);
+## Swap the Page Components
+
+Pretty cool. However, these links don't yet switch out our components. If we click on "About" and navigate to `/about` we only want to see the `AboutPage` component displaying.
+
+In `App.jsx` we'll now create our routes.
+
+Import the `Switch` and the `Route` component from `react-router-dom`.
+```js
+import { Switch, Route } from 'react-router-dom';
+...
+```
+
+Just like a JavaScript switch statement, we'll be able to switch out our components based on the URL.
+
+In the `App` component wrap all of the page components in a the `Switch` component we just imported.
+
+```js
+...
+function App() {
+  return (
+    <div>
+      <Header />
+      <Switch>
+        <HomePage />
+        <AboutPage />
+        <ContactPage />
+      </Switch>
+    </div>
+  );
 }
+
+export default App;
 ```
 
-And just like that we have redirection.
+Wrap each of the Page components in a `Route` component and set the `path` prop accordingly.
+
+The `path` designates what path we will show that particular component for.
+
+When we navigate to the `/` path we want to render the `HomePage` component. When we navigate to the `/about` path we want to render the `AboutPage` component. When we navigate to the `/contact` path we want to render the `ContactPage` component.
+
+```js
+function App() {
+  return (
+    <div>
+      <Header />
+      <Switch>
+
+        <Route path="/">
+          <HomePage />
+        </Route>
+
+        <Route path="/about">
+          <AboutPage />
+        </Route>
+
+        <Route path="/contact">
+          <ContactPage />
+        </Route>
+
+      </Switch>
+    </div>
+  );
+}
+
+export default App;
+```
+
+Try it out. By clicking on "About" in the navigation, the URL should update to `/about` and we should see the `AboutPage` component rendering.
+
+Pull up the `App.js` file and the `Header.jsx` file side by side to visually see this connection. Each link is paired with a path, and each path is paired with a component we want to render for that path.
+
+---
+
+## Additional Resources
+
+[React Router Docs](https://reactrouter.com/web/guides/quick-start)
