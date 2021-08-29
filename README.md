@@ -10,6 +10,8 @@ Learning Objectives
 
 React Router is tool that will allow us to update the URL of our React applications without having to fully refresh the page. This makes for a much smoother user experience in the browser.
 
+[The React Router Docs](https://reactrouter.com/web/guides/quick-start)
+
 ## Preparation
 
 First, we'll create a new app to learn how React Router works.
@@ -256,4 +258,4 @@ Pull up the `App.js` file and the `Header.jsx` file side by side to visually see
 
 ## Additional Resources
 
-[React Router Docs](https://reactrouter.com/web/guides/quick-start)
+[The React Router Docs](https://reactrouter.com/web/guides/quick-start)
