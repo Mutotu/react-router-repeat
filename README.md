@@ -2,12 +2,9 @@
 
 # Intro to React Router
 
-For this lesson, students should:
-
-- Understand components
-- Understand state and props
-
-The first part is a demonstration of how Router works. Students can then work on each lab and the challenges.
+Learning Objectives
+- Implement React Router in a Bare Bones React App
+- Set up a navigation and a set of components using React Router
 
 ## What is React Router?
 
