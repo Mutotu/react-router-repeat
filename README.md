@@ -289,7 +289,7 @@ let myPerson = "It's me"
 ...
 
 
-<Route path="/contact" render={() => <Contact person={myPerson} />} />
+<Route path="/contact" render={() => <ContactPage person={myPerson} />} />
 ```
 
 `ContactPage.js`
