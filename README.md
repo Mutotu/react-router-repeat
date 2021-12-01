@@ -67,26 +67,26 @@ Start by creating a `pages` directory.
 mkdir src/pages
 ```
 
-Then we'create the files for the three pages, `HomePage.jsx`, `AboutPage.jsx`, and `ContactPage.jsx`.
+Then we'create the files for the three pages, `HomePage.js`, `AboutPage.js`, and `ContactPage.js`.
 
 ```bash
-touch src/pages/HomePage.jsx
-touch src/pages/AboutPage.jsx
-touch src/pages/ContactPage.jsx
+touch src/pages/HomePage.js
+touch src/pages/AboutPage.js
+touch src/pages/ContactPage.js
 ```
 
-Create a `components` directory and create a `Header.jsx` inside `components`.
+Create a `components` directory and create a `Header.js` inside `components`.
 
 ```bash
 mkdir src/components
-touch src/components/Header.jsx
+touch src/components/Header.js
 ```
 ---
 ## Create the Components
 
 Our pages will start off very basic to allow us to focus on React Router.
 
-In `HomePage.jsx` add a basic function component.
+In `HomePage.js` add a basic function component.
 ```js
 function HomePage() {
   return (
@@ -101,7 +101,7 @@ Create components for the `AboutPage` page and the `ContactPage` page. They can 
 
 ---
 
-In `Header.jsx` set up the navigation. The navigation won't include links/anchor tags for now. We'll be adding those in with React Router.
+In `Header.js` set up the navigation. The navigation won't include links/anchor tags for now. We'll be adding those in with React Router.
 ```js
 function Header() {
   return (
@@ -148,7 +148,7 @@ In the browser, you'll notice we're showing all three Page components at once. T
 
 ## Add Links
 
-In `Header.jsx` import the `Link` component from `react-router-dom`. We're using object destructuring to pull out just the `Link` variable from the `react-router-dom` package. The Link tag is what modifies your window.location history (and thus your browser history). Without the `Link` tags, our site is only navigable by manually typing the paths in the address bar.
+In `Header.js` import the `Link` component from `react-router-dom`. We're using object destructuring to pull out just the `Link` variable from the `react-router-dom` package. The Link tag is what modifies your window.location history (and thus your browser history). Without the `Link` tags, our site is only navigable by manually typing the paths in the address bar.
 ```js
 import { Link } from 'react-router-dom';
 ...
@@ -188,17 +188,17 @@ Open up the elements panel in your browser and you'll notice we've actually crea
 
 Pretty cool. However, these links don't yet switch out our components. If we click on "About" and navigate to `/about` we only want to see the `AboutPage` component displaying.
 
-In `App.jsx` we'll now create our routes.
+In `App.js` we'll now create our routes.
 
-Import the `Switch` and the `Route` component from `react-router-dom`.
+Import the `Routes` and the `Route` component from `react-router-dom`.
 ```js
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 ...
 ```
 
 Just like a JavaScript switch statement, we'll be able to switch out our components based on the URL.
 
-In the `App` component wrap all of the page components in a the `Switch` component we just imported.
+In the `App` component wrap all of the page components in a the `Routes` component we just imported.
 
 ```js
 ...
@@ -206,11 +206,11 @@ function App() {
   return (
     <div>
       <Header />
-      <Switch>
+      <Routes>
         <HomePage />
         <AboutPage />
         <ContactPage />
-      </Switch>
+      </Routes>
     </div>
   );
 }
@@ -218,7 +218,7 @@ function App() {
 export default App;
 ```
 
-Wrap each of the Page components in a `Route` component and set the `path` prop accordingly.
+Modify each of the Page components so they are set equal to an `element` of a `Route` component. Notice that you will enclose the Page component in curly braces, as well as enclose them within angle brackets, like this: `element={ < HomePage /> }` Assign the `path` prop accordingly.
 
 The `path` designates what path we will show that particular component for.
 
@@ -229,21 +229,11 @@ function App() {
   return (
     <div>
       <Header />
-      <Switch>
-
-        <Route path="/" exact>
-          <HomePage />
-        </Route>
-
-        <Route path="/about">
-          <AboutPage />
-        </Route>
-
-        <Route path="/contact">
-          <ContactPage />
-        </Route>
-
-      </Switch>
+      <Routes>
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/about" element={<AboutPage/>} />
+        <Route path="/contact" element={<ContactPage/>} />
+      </Routes>
     </div>
   );
 }
@@ -251,33 +241,14 @@ function App() {
 export default App;
 ```
 
-Notice the exact designation placed on our Home route. We need it because if we don't use exact, when someone tries to navigate to `/about` or `/contact` they will never leave the "HomePage", because `/` is a partial match for `/about` and `/contact`.
-
 Try it out. By clicking on "About" in the navigation, the URL should update to `/about` and we should see the `AboutPage` component rendering.
 
-Pull up the `App.js` file and the `Header.jsx` file side by side to visually see this connection. Each link is paired with a path, and each path is paired with a component we want to render for that path.
+Pull up the `App.js` file and the `Header.js` file side by side to visually see this connection. Each link is paired with a path, and each path is paired with a component we want to render for that path.
 
 
 ## Taking it a step further
 
-We can re-write our `<Route />` components in App.js using another syntax:
-
-```
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Switch>
-        <Route path="/" exact component={HomePage} />
-        <Route path="/about" component={AboutPage} />
-        <Route path="/contact" component={ContactPage} />
-      </Switch>
-    </div>
-  );
-}
-```
-
-Inside of our `<Route />` components, we used the `component` attribute (which comes already built-in with the `BroswerRouter` object). But using `component` doesn't give us any access to our routing params. If we want more custom control of our routes, we need to use a render attribute instead, which allows us to pass props.
+Inside of our `<Route />` components, we used the `element` attribute (which comes already built-in with the `BroswerRouter` object). For more custom control of information delivered through our routes, we can also pass props.
 
 So we could re-write one or more of our `<Route />` components, as needed, if we wanted to pass props into that component:
 
@@ -289,7 +260,7 @@ let myPerson = "It's me"
 ...
 
 
-<Route path="/contact" render={() => <ContactPage person={myPerson} />} />
+<Route path="/contact" element={ <ContactPage person={myPerson} />} />
 ```
 
 `ContactPage.js`
